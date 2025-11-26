@@ -96,6 +96,9 @@ public class WebElementsTest {
 					
 		}
 		
+//		listCheckBoxes.get(2).click();
+//		listCheckBoxes.get(3).click();
+		
 		assertTrue(listCheckBoxes.get(2).isSelected());
 		assertTrue(listCheckBoxes.get(3).isSelected());
 		
