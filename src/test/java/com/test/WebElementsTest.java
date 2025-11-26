@@ -81,5 +81,30 @@ public class WebElementsTest {
 		assertFalse(listRadios.get(3).isSelected());
 		
 	}	
+	
+	@Test
+	public void testValidateCheckBox() {
+		List<WebElement> listCheckBoxes = driver.findElements(By.name("chkbox"));
+		assertEquals(4, listCheckBoxes.size());
+		
+		for (WebElement element : listCheckBoxes) {
+			
+			if ((element.getAttribute("value").equals("Check 3")) 
+					|| (element.getAttribute("value").equals("Check 4"))) {
+				element.click();
+			}
+					
+		}
+		
+		assertTrue(listCheckBoxes.get(2).isSelected());
+		assertTrue(listCheckBoxes.get(3).isSelected());
+		
+		assertFalse(listCheckBoxes.get(0).isSelected());
+		assertFalse(listCheckBoxes.get(1).isSelected());
+		
+		
+	}
+	
+	
 
 }
