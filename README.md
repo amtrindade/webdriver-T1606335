@@ -1,4 +1,4 @@
-# Curso Selenium WebDriver — TargetTrust
+# Curso Selenium WebDriver — TargetTrust T1606335
 
 Projeto de exemplos e testes automatizados com Selenium WebDriver como parte do curso da TargetTrust.
 
@@ -12,7 +12,6 @@ Projeto de exemplos e testes automatizados com Selenium WebDriver como parte do 
 - Java 11+ (ou versão utilizada no curso)
 - Maven 3.8+
 - Navegador (ex.: Google Chrome) e WebDriver correspondente
-- macOS com `zsh` (comandos abaixo prontos para este ambiente)
 
 ## Clonar o projeto
 ```bash
@@ -29,7 +28,7 @@ cd curso-webdriver-T1606335
 - Caso use Chrome:
   - Baixe o ChromeDriver compatível com a versão do seu navegador
   - Coloque o binário em um diretório do `PATH` (ex.: `/usr/local/bin`) ou configure no código o caminho do driver.
-- Alternativamente, use bibliotecas de gestão automática de drivers (ex.: `webdrivermanager`), se o curso permitir.
+- Alternativamente, use bibliotecas de gestão automática de drivers (ex.: `webdrivermanager`).
 
 ## Executar os testes
 ```bash

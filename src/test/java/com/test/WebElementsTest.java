@@ -2,6 +2,8 @@ package com.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,6 +60,26 @@ public class WebElementsTest {
 		assertFalse(tfDisable.isEnabled());			
 	}
 	
-	
+	@Test
+	public void testValidaRadioButton() {
+		List<WebElement> listRadios = driver.findElements(By.name("radioGroup1"));
+		
+		assertEquals(4, listRadios.size());
+		
+		for (WebElement element : listRadios) {
+			//System.out.println(element.getAttribute("value"));
+			
+			if (element.getAttribute("value").equals("Radio 3")) {
+				element.click();
+			}
+		}
+		
+		assertTrue(listRadios.get(2).isSelected());
+		
+		assertFalse(listRadios.get(0).isSelected());
+		assertFalse(listRadios.get(1).isSelected());
+		assertFalse(listRadios.get(3).isSelected());
+		
+	}	
 
 }
