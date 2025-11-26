@@ -72,14 +72,12 @@ public class WebElementsTest {
 			if (element.getAttribute("value").equals("Radio 3")) {
 				element.click();
 			}
-		}
-		
+		}		
 		assertTrue(listRadios.get(2).isSelected());
 		
 		assertFalse(listRadios.get(0).isSelected());
 		assertFalse(listRadios.get(1).isSelected());
-		assertFalse(listRadios.get(3).isSelected());
-		
+		assertFalse(listRadios.get(3).isSelected());		
 	}	
 	
 	@Test
@@ -104,10 +102,5 @@ public class WebElementsTest {
 		
 		assertFalse(listCheckBoxes.get(0).isSelected());
 		assertFalse(listCheckBoxes.get(1).isSelected());
-		
-		
 	}
-	
-	
-
 }
