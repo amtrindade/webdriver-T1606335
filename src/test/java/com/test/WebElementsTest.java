@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class WebElementsTest {
 	
@@ -103,4 +104,19 @@ public class WebElementsTest {
 		assertFalse(listCheckBoxes.get(0).isSelected());
 		assertFalse(listCheckBoxes.get(1).isSelected());
 	}
+	
+	@Test
+	public void testValidateDropDownSingle() throws InterruptedException {
+		WebElement dropDownSingle = driver.findElement(By.name("dropdownlist"));		
+		Select selectSingle = new Select(dropDownSingle);
+		
+		selectSingle.selectByIndex(1);
+		Thread.sleep(2000);
+		selectSingle.selectByValue("item4");
+		Thread.sleep(2000);
+		selectSingle.selectByVisibleText("Item 7");
+		
+		assertEquals("Item 7", selectSingle.getFirstSelectedOption().getText());		
+	}
+	
 }
