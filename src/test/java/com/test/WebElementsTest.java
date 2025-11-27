@@ -135,7 +135,15 @@ public class WebElementsTest {
 		
 		assertEquals("Item 5", valuesSelect.get(0).getText());
 		assertEquals("Item 8", valuesSelect.get(1).getText());
-		assertEquals("Item 9", valuesSelect.get(2).getText());	
+		assertEquals("Item 9", valuesSelect.get(2).getText());
+		
+		selectMulti.deselectByVisibleText("Item 8");
+		
+		valuesSelect = selectMulti.getAllSelectedOptions();
+		
+		assertEquals(2, valuesSelect.size());
+		assertEquals("Item 5", valuesSelect.get(0).getText());
+		assertEquals("Item 9", valuesSelect.get(1).getText());
 	}
 	
 }
