@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -111,12 +110,32 @@ public class WebElementsTest {
 		Select selectSingle = new Select(dropDownSingle);
 		
 		selectSingle.selectByIndex(1);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		selectSingle.selectByValue("item4");
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		selectSingle.selectByVisibleText("Item 7");
 		
-		assertEquals("Item 7", selectSingle.getFirstSelectedOption().getText());		
+		assertEquals("Item 7", selectSingle.getFirstSelectedOption().getText());
+		
+		selectSingle.deselectAll();
+	}
+	
+	@Test
+	public void testValidateDropDownMultiSelect() {
+		WebElement dropDownMultiSelect = driver.findElement(By.name("multiselectdropdown"));
+		Select selectMulti = new Select(dropDownMultiSelect);
+		
+		selectMulti.selectByVisibleText("Item 5");
+		selectMulti.selectByVisibleText("Item 8");
+		selectMulti.selectByVisibleText("Item 9");
+		
+		List<WebElement> valuesSelect = selectMulti.getAllSelectedOptions();
+		
+		assertEquals(3, valuesSelect.size());
+		
+		assertEquals("Item 5", valuesSelect.get(0).getText());
+		assertEquals("Item 8", valuesSelect.get(1).getText());
+		assertEquals("Item 9", valuesSelect.get(2).getText());	
 	}
 	
 }
