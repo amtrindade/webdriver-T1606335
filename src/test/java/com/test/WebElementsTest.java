@@ -116,17 +116,17 @@ public class WebElementsTest {
 		selectSingle.selectByVisibleText("Item 7");
 		
 		assertEquals("Item 7", selectSingle.getFirstSelectedOption().getText());
-		
-		selectSingle.deselectAll();
 	}
 	
 	@Test
-	public void testValidateDropDownMultiSelect() {
+	public void testValidateDropDownMultiSelect() throws InterruptedException {
 		WebElement dropDownMultiSelect = driver.findElement(By.name("multiselectdropdown"));
 		Select selectMulti = new Select(dropDownMultiSelect);
 		
 		selectMulti.selectByVisibleText("Item 5");
+		Thread.sleep(1000);
 		selectMulti.selectByVisibleText("Item 8");
+		Thread.sleep(1000);
 		selectMulti.selectByVisibleText("Item 9");
 		
 		List<WebElement> valuesSelect = selectMulti.getAllSelectedOptions();
@@ -137,6 +137,7 @@ public class WebElementsTest {
 		assertEquals("Item 8", valuesSelect.get(1).getText());
 		assertEquals("Item 9", valuesSelect.get(2).getText());
 		
+		Thread.sleep(2000);
 		selectMulti.deselectByVisibleText("Item 8");
 		
 		valuesSelect = selectMulti.getAllSelectedOptions();
@@ -144,6 +145,19 @@ public class WebElementsTest {
 		assertEquals(2, valuesSelect.size());
 		assertEquals("Item 5", valuesSelect.get(0).getText());
 		assertEquals("Item 9", valuesSelect.get(1).getText());
+	}
+	
+	@Test
+	public void testIFrame() {
+		//Entra no iframe
+		driver.switchTo().frame("frame1");
+		
+		WebElement tfIframe = driver.findElement(By.id("tfiframe"));
+		tfIframe.sendKeys("Antonio Trindade");
+		assertEquals("Antonio Trindade", tfIframe.getAttribute("value"));
+		
+		//Volta para o contexto original
+		driver.switchTo().defaultContent();
 	}
 	
 }
