@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -158,6 +159,27 @@ public class WebElementsTest {
 		
 		//Volta para o contexto original
 		driver.switchTo().defaultContent();
+	}
+	
+	@Test
+	public void testAlertTypes() throws InterruptedException {
+		WebElement btnAlert = driver.findElement(By.name("alertbtn"));
+		btnAlert.click();
+		
+		Thread.sleep(2000);
+		
+		Alert alert = driver.switchTo().alert();
+		assertEquals("Eu sou um alerta!", alert.getText());
+		alert.accept();		
+		
+		WebElement btnConfirm = driver.findElement(By.name("confirmbtn"));
+		btnConfirm.click();
+		
+		Thread.sleep(2000);
+		Alert confirm = driver.switchTo().alert();
+		assertEquals("Pressione um botão!", confirm.getText());
+		confirm.dismiss();
+		
 	}
 	
 }
