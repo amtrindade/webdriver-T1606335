@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -38,6 +39,7 @@ public class WebElementsTest {
 		driver.quit();
 	}
 
+	@Disabled("Bug cadastrado com o código xpto no Jira") 
 	@Test
 	public void testValidateTextField() {
 		//1. Identificar um elemento
