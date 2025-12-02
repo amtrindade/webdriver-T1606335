@@ -12,10 +12,11 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class RegularExpressionTest {
+public class DragAndDropTest {
 	
 	public WebDriver driver;	
 
@@ -27,10 +28,12 @@ public class RegularExpressionTest {
 		driver = new FirefoxDriver();
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		
+		//Abrir o browser no monitor auxiliar
 		Point point = new Point(-1500, 0); 
 		driver.manage().window().setPosition(point);
 		
-		driver.get("https://www.geradordecpf.org/");		
+		driver.get("https://jqueryui.com/resources/demos/droppable/default.html");		
 	}
 
 	@AfterEach
@@ -40,33 +43,21 @@ public class RegularExpressionTest {
 	}
 	
 	@Test
-	public void testValidaCPFComMascara() {
+	public void testDragAndDrop() throws InterruptedException {
+		WebElement divOrigin = driver.findElement(By.id("draggable"));
+		WebElement divTarget = driver.findElement(By.id("droppable"));
 		
-		WebElement cbPonto = driver.findElement(By.id("cbPontos"));
-		cbPonto.click();
+		assertEquals("Drop here", divTarget.getText());
 		
-		WebElement btnGerar = driver.findElement(By.id("btn-gerar-cpf"));
-		btnGerar.click();
+		new Actions(driver).dragAndDrop(divOrigin, divTarget).perform();
 		
-		WebElement tfCpf = driver.findElement(By.id("numero"));
-		String cpfGerado = tfCpf.getAttribute("value");
+		assertEquals("Dropped!", divTarget.getText());
 		
-		System.out.println(cpfGerado);
+		Thread.sleep(2000);
 		
-		assertTrue(cpfGerado.matches("^[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}-[0-9]{2}$"));	
+		new Actions(driver).dragAndDropBy(divOrigin, 200, 200).perform();
 	}
 	
-	@Test
-	public void testValidaCPFSemMascara() {
-		WebElement btnGerar = driver.findElement(By.id("btn-gerar-cpf"));
-		btnGerar.click();
-		
-		WebElement tfCpf = driver.findElement(By.id("numero"));
-		String cpfGerado = tfCpf.getAttribute("value");
-		
-		System.out.println(cpfGerado);
-		
-		assertTrue(cpfGerado.matches("^\\d{11}$"));
-	}
+	
 
 }
