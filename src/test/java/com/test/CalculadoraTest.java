@@ -13,12 +13,15 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CalculadoraTest {
 	
 	public WebDriver driver;	
+	public WebDriverWait wait;
 
 	@BeforeEach
 	public void setUp() throws Exception {		
@@ -32,6 +35,9 @@ public class CalculadoraTest {
 		//Abrir o browser no monitor auxiliar
 		Point point = new Point(-1500, 0); 
 		driver.manage().window().setPosition(point);
+		
+		//Inicializa o wait
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		
 		driver.get("https://antoniotrindade.com.br/treinoautomacao/desafiosoma.html");	
 	}
@@ -60,9 +66,9 @@ public class CalculadoraTest {
 		tfValor2.sendKeys(Integer.toString(valor2));
 		btnSomar.click();
 		
-		//TODO Alterar forma de espera
-		Thread.sleep(3000);
-		
+		//espera pelo texto específico a ser disponibilizado no componente
+		wait.until(ExpectedConditions.textToBePresentInElementValue(tfTotal, Integer.toString(totalSoma)));
+				
 		assertEquals(Integer.toString(totalSoma), tfTotal.getAttribute("value"));
 	}
 	
