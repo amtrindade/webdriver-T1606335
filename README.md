@@ -91,16 +91,29 @@ mvn clean test
 ## Estrutura do Projeto
 ```
 .
-├── pom.xml
-├── src
-│   ├── main
-│   │   ├── java
-│   │   └── resources
-│   └── test
-│       ├── java
-│       │   └── com/test/WebElementsTest.java
-│       └── resources
-└── target
+├── .gitignore               # Arquivos ignorados pelo Git
+├── README.md                # Documentação do projeto
+├── pom.xml                  # Configuração Maven e dependências
+├── src/
+│   ├── main/
+│   │   ├── java/            # Código fonte principal (vazio)
+│   │   └── resources/       # Recursos da aplicação
+│   └── test/
+│       ├── java/
+│       │   └── com/
+│       │       ├── core/
+│       │       │   ├── BaseTest.java          # Classe base para testes
+│       │       │   └── DriverFactory.java     # Factory para gerenciar WebDriver
+│       │       └── test/
+│       │           ├── CalculadoraTest.java
+│       │           ├── DragAndDropTest.java
+│       │           ├── LocatorsTest.java
+│       │           ├── NavigationCacheTest.java
+│       │           ├── NavigationWindowTest.java
+│       │           ├── RegularExpressionTest.java
+│       │           └── WebElementsTest.java
+│       └── resources/       # Recursos de teste
+└── target/                  # Diretório de build (gerado pelo Maven)
 ```
 
 ## Dicas
