@@ -18,12 +18,11 @@ public class DriverFactory {
 		
 			WebDriverManager.firefoxdriver().setup();		
 			driver = new FirefoxDriver();
-		
-			
+					
 			//Abrir o browser no monitor auxiliar
-			Point point = new Point(-1500, 0); 
+			//Point point = new Point(-1500, 0); 
+			//driver.manage().window().setPosition(point);
 			
-			driver.manage().window().setPosition(point);
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		}
 			
