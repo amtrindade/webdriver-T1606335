@@ -1,49 +1,33 @@
 package com.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.core.DriverFactory.getDriver;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class WebElementsTest {
-	
-	public WebDriver driver;	
+import com.core.BaseTest;
+
+public class WebElementsTest extends BaseTest{
+		
 
 	@BeforeEach
 	public void setUp() throws Exception {
-		//System.setProperty("webdriver.chrome.driver", "/Users/umov.me/Dev/drivers/chromedriver");
-		System.setProperty("webdriver.geckodriver.driver", "/Users/umov.me/Dev/drivers/geckodriver");
-		
-		// Para windows
-		//System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver.exe");
-		
-		//driver = new ChromeDriver();
-		driver = new FirefoxDriver();
-		driver.get("https://antoniotrindade.com.br/treinoautomacao/elementsweb.html");
+		getDriver().get("https://antoniotrindade.com.br/treinoautomacao/elementsweb.html");
 	}
 
-	@AfterEach
-	public void tearDown() throws Exception {
-		//Tempo para visualização
-		Thread.sleep(2000);
-		driver.quit();
-	}
-
-	@Disabled("Bug cadastrado com o código xpto no Jira") 
 	@Test
 	public void testValidateTextField() {
 		//1. Identificar um elemento
-		WebElement tfName = driver.findElement(By.name("txtbox1"));
+		WebElement tfName = getDriver().findElement(By.name("txtbox1"));
 		
 		//2. Fazer uma ação no elemento		
 		tfName.sendKeys("Hello world test automation");	
@@ -55,8 +39,8 @@ public class WebElementsTest {
 	@Test
 	public void testValidateEnableDisableTextField() {
 		//1. Identificar um elemento na tela
-		WebElement tfEnable = driver.findElement(By.name("txtbox1"));
-		WebElement tfDisable = driver.findElement(By.name("txtbox2"));
+		WebElement tfEnable = getDriver().findElement(By.name("txtbox1"));
+		WebElement tfDisable = getDriver().findElement(By.name("txtbox2"));
 		
 		//2. Validar que os elementos estão habilitado e desabilitado
 		assertTrue(tfEnable.isEnabled());
@@ -65,7 +49,7 @@ public class WebElementsTest {
 	
 	@Test
 	public void testValidaRadioButton() {
-		List<WebElement> listRadios = driver.findElements(By.name("radioGroup1"));
+		List<WebElement> listRadios = getDriver().findElements(By.name("radioGroup1"));
 		
 		assertEquals(4, listRadios.size());
 		
@@ -85,7 +69,7 @@ public class WebElementsTest {
 	
 	@Test
 	public void testValidateCheckBox() {
-		List<WebElement> listCheckBoxes = driver.findElements(By.name("chkbox"));
+		List<WebElement> listCheckBoxes = getDriver().findElements(By.name("chkbox"));
 		assertEquals(4, listCheckBoxes.size());
 		
 		for (WebElement element : listCheckBoxes) {
@@ -109,7 +93,7 @@ public class WebElementsTest {
 	
 	@Test
 	public void testValidateDropDownSingle() throws InterruptedException {
-		WebElement dropDownSingle = driver.findElement(By.name("dropdownlist"));		
+		WebElement dropDownSingle = getDriver().findElement(By.name("dropdownlist"));		
 		Select selectSingle = new Select(dropDownSingle);
 		
 		selectSingle.selectByIndex(1);
@@ -123,7 +107,7 @@ public class WebElementsTest {
 	
 	@Test
 	public void testValidateDropDownMultiSelect() throws InterruptedException {
-		WebElement dropDownMultiSelect = driver.findElement(By.name("multiselectdropdown"));
+		WebElement dropDownMultiSelect = getDriver().findElement(By.name("multiselectdropdown"));
 		Select selectMulti = new Select(dropDownMultiSelect);
 		
 		selectMulti.selectByVisibleText("Item 5");
@@ -153,54 +137,54 @@ public class WebElementsTest {
 	@Test
 	public void testIFrame() {
 		//Entra no iframe
-		driver.switchTo().frame("frame1");
+		getDriver().switchTo().frame("frame1");
 		
-		WebElement tfIframe = driver.findElement(By.id("tfiframe"));
+		WebElement tfIframe = getDriver().findElement(By.id("tfiframe"));
 		tfIframe.sendKeys("Antonio Trindade");
 		assertEquals("Antonio Trindade", tfIframe.getAttribute("value"));
 		
 		//Volta para o contexto original
-		driver.switchTo().defaultContent();
+		getDriver().switchTo().defaultContent();
 	}
 	
 	@Test
 	public void testAlertTypes() throws InterruptedException {
-		WebElement btnAlert = driver.findElement(By.name("alertbtn"));
+		WebElement btnAlert = getDriver().findElement(By.name("alertbtn"));
 		btnAlert.click();
 		
 		Thread.sleep(2000);
 		
-		Alert alert = driver.switchTo().alert();
+		Alert alert = getDriver().switchTo().alert();
 		assertEquals("Eu sou um alerta!", alert.getText());
 		alert.accept();		
 		
-		WebElement btnConfirm = driver.findElement(By.name("confirmbtn"));
+		WebElement btnConfirm = getDriver().findElement(By.name("confirmbtn"));
 		btnConfirm.click();
 		
 		Thread.sleep(2000);
-		Alert confirm = driver.switchTo().alert();
+		Alert confirm = getDriver().switchTo().alert();
 		assertEquals("Pressione um botão!", confirm.getText());
 		confirm.dismiss();
 	}
 	
 	@Test
 	public void testPromptAlerts() throws InterruptedException {
-		WebElement btnPrompt = driver.findElement(By.id("promptBtn"));
+		WebElement btnPrompt = getDriver().findElement(By.id("promptBtn"));
 		btnPrompt.click();
 		
 		Thread.sleep(2000);
-		Alert prompt = driver.switchTo().alert();
+		Alert prompt = getDriver().switchTo().alert();
 		assertEquals("Digite o ano:", prompt.getText());
 		prompt.sendKeys("2025");
 		prompt.accept();
 		
 		Thread.sleep(2000);
-		Alert confirm = driver.switchTo().alert();
+		Alert confirm = getDriver().switchTo().alert();
 		assertEquals("O ano é 2025?", confirm.getText());
 		confirm.accept();
 		
 		Thread.sleep(2000);
-		Alert alert = driver.switchTo().alert();
+		Alert alert = getDriver().switchTo().alert();
 		assertEquals("Feito!", alert.getText());
 		alert.accept();
 	}	

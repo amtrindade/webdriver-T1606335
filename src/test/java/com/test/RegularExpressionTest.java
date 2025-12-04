@@ -1,54 +1,32 @@
 package com.test;
 
-import java.time.Duration;
+import static com.core.DriverFactory.getDriver;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.core.BaseTest;
 
-public class RegularExpressionTest {
-	
-	public WebDriver driver;	
-
+public class RegularExpressionTest extends BaseTest{
+		
 	@BeforeEach
-	public void setUp() throws Exception {		
-		//System.setProperty("webdriver.geckodriver.driver", "/Users/umov.me/Dev/drivers/geckodriver");
-		
-		WebDriverManager.firefoxdriver().setup();		
-		driver = new FirefoxDriver();
-		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		Point point = new Point(-1500, 0); 
-		driver.manage().window().setPosition(point);
-		
-		driver.get("https://www.geradordecpf.org/");		
+	public void setUp() throws Exception {
+		getDriver().get("https://www.geradordecpf.org/");		
 	}
 
-	@AfterEach
-	public void tearDown() throws Exception {
-		Thread.sleep(2000);
-		driver.quit();
-	}
-	
 	@Test
 	public void testValidaCPFComMascara() {
 		
-		WebElement cbPonto = driver.findElement(By.id("cbPontos"));
+		WebElement cbPonto = getDriver().findElement(By.id("cbPontos"));
 		cbPonto.click();
 		
-		WebElement btnGerar = driver.findElement(By.id("btn-gerar-cpf"));
+		WebElement btnGerar = getDriver().findElement(By.id("btn-gerar-cpf"));
 		btnGerar.click();
 		
-		WebElement tfCpf = driver.findElement(By.id("numero"));
+		WebElement tfCpf = getDriver().findElement(By.id("numero"));
 		String cpfGerado = tfCpf.getAttribute("value");
 		
 		System.out.println(cpfGerado);
@@ -58,10 +36,10 @@ public class RegularExpressionTest {
 	
 	@Test
 	public void testValidaCPFSemMascara() {
-		WebElement btnGerar = driver.findElement(By.id("btn-gerar-cpf"));
+		WebElement btnGerar = getDriver().findElement(By.id("btn-gerar-cpf"));
 		btnGerar.click();
 		
-		WebElement tfCpf = driver.findElement(By.id("numero"));
+		WebElement tfCpf = getDriver().findElement(By.id("numero"));
 		String cpfGerado = tfCpf.getAttribute("value");
 		
 		System.out.println(cpfGerado);
