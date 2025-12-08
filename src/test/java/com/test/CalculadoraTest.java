@@ -25,7 +25,6 @@ public class CalculadoraTest extends BaseTest{
 		wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 	}
 
-	
 	@Test
 	public void testSoma() throws InterruptedException {
 		Random aleatorio = new Random();
