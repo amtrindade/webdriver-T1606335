@@ -26,9 +26,14 @@ public class LoginBSPage {
 	
 	public MainBSPage clickBtnLogin() {
 		WebElement btnLogin = getDriver().findElement(By.xpath("//input[@value='Login']"));
-		btnLogin.click();
-		
+		btnLogin.click();		
 		return new MainBSPage();
+	}
+	
+	public MainBSPage genericLogin(String userName, String password) {
+		inputUserName(userName);
+		inputPass(password);
+		return clickBtnLogin();		
 	}
 	
 

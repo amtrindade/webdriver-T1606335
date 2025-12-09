@@ -91,28 +91,35 @@ mvn clean test
 ## Estrutura do Projeto
 ```
 .
-├── .gitignore               # Arquivos ignorados pelo Git
-├── README.md                # Documentação do projeto
-├── pom.xml                  # Configuração Maven e dependências
+├── .gitignore                    # Arquivos ignorados pelo Git
+├── README.md                     # Documentação do projeto
+├── pom.xml                       # Configuração Maven e dependências
 ├── src/
 │   ├── main/
-│   │   ├── java/            # Código fonte principal (vazio)
-│   │   └── resources/       # Recursos da aplicação
+│   │   ├── java/                 # Código fonte principal (vazio)
+│   │   └── resources/            # Recursos da aplicação
 │   └── test/
 │       ├── java/
 │       │   └── com/
 │       │       ├── core/
-│       │       │   ├── BaseTest.java          # Classe base para testes
-│       │       │   └── DriverFactory.java     # Factory para gerenciar WebDriver
+│       │       │   ├── BaseTest.java        # Classe base para testes
+│       │       │   ├── DriverFactory.java   # Factory para gerenciar WebDriver
+│       │       │   └── GlobalProperty.java  # Gerenciamento de propriedades
+│       │       ├── page/
+│       │       │   ├── LoginBSPage.java     # Page Object - Login
+│       │       │   └── MainBSPage.java      # Page Object - Página principal
 │       │       └── test/
+│       │           ├── AddCartBSTest.java
 │       │           ├── CalculadoraTest.java
 │       │           ├── DragAndDropTest.java
 │       │           ├── LocatorsTest.java
+│       │           ├── LoginBSTest.java
 │       │           ├── NavigationCacheTest.java
 │       │           ├── NavigationWindowTest.java
 │       │           ├── RegularExpressionTest.java
 │       │           └── WebElementsTest.java
-│       └── resources/       # Recursos de teste
+│       └── resources/
+│           └── webdriver.properties  # Configurações do WebDriver
 └── target/                  # Diretório de build (gerado pelo Maven)
 ```
 
