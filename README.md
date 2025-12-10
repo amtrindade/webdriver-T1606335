@@ -106,17 +106,22 @@ mvn clean test
 │       │       │   ├── DriverFactory.java   # Factory para gerenciar WebDriver
 │       │       │   └── GlobalProperty.java  # Gerenciamento de propriedades
 │       │       ├── page/
-│       │       │   ├── LoginBSPage.java     # Page Object - Login
-│       │       │   └── MainBSPage.java      # Page Object - Página principal
+│       │       │   ├── HomeBBPage.java       # Page Object - Home BugBank
+│       │       │   ├── LoginBBPage.java      # Page Object - Login BugBank
+│       │       │   ├── LoginBSPage.java      # Page Object - Login BookStore
+│       │       │   ├── MainBSPage.java       # Page Object - Página principal BookStore
+│       │       │   └── RegisterBBPage.java   # Page Object - Registro BugBank
 │       │       └── test/
 │       │           ├── AddCartBSTest.java
 │       │           ├── CalculadoraTest.java
 │       │           ├── DragAndDropTest.java
 │       │           ├── LocatorsTest.java
+│       │           ├── LoginBBTest.java
 │       │           ├── LoginBSTest.java
 │       │           ├── NavigationCacheTest.java
 │       │           ├── NavigationWindowTest.java
 │       │           ├── RegularExpressionTest.java
+│       │           ├── RegisterBBTest.java
 │       │           └── WebElementsTest.java
 │       └── resources/
 │           └── webdriver.properties  # Configurações do WebDriver
